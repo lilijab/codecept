@@ -1,16 +1,21 @@
 # Codeception Test Suite Configuration
-#
-# Suite for acceptance tests.
-# Perform tests in browser using the WebDriver or PhpBrowser.
-# If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
 actor: AcceptanceTester
 modules:
     enabled:
         - \Helper\Acceptance
         - WebDriver:
-            url: 'https://bank.%MAGIC_WORD%.com'
-            port: 9515
-            browser: chrome
-    step_decorators:
-        - Codeception/Step/Retry
+              url: 'https://bank.%MAGIC_WORD%.com'
+              port: 4444
+              browser: chrome
+env:
+    desktop:
+        modules:
+            config:
+                WebDriver:
+                    window_size: 1366x768
+    mobile:
+        modules:
+            config:
+                WebDriver:
+                    window_size: 375x667

@@ -15,7 +15,7 @@ class loginPageCest
     const LOGIN_PATH = "/login";
     const HOME_BODY = "body.layout-front-page";
 
-    public function _before(\AcceptanceTester $I)
+    public function __construct()
     {
         $this->magicWord = getenv("MAGIC_WORD");
         $this->loginURL = self::LANGUAGE . self::LOGIN_PATH;
@@ -26,8 +26,13 @@ class loginPageCest
         $this->nonExistentUser = getenv("NON_EXISTENT_USER");
         $this->phone = getenv("PHONE");
     }
-// tests
-    public function UserCanReturnHome(AcceptanceTester $I)
+
+    /**
+     * This test will be executed only in 'desktop' environment
+     *
+     * @env desktop
+     */
+    public function UserCanReturnHomeDesktop(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
         $I->waitForElementVisible(["css" => ".{$this->magicWord}-logo > a"]);
@@ -35,6 +40,24 @@ class loginPageCest
         $I->seeElement(self::HOME_BODY);
     }
 
+    /**
+     * This test will be executed only in 'mobile' environment
+     *
+     * @env mobile
+     */
+    public function UserCanReturnHomeMobile(AcceptanceTester $I)
+    {
+        $I->amOnPage($this->loginURL);
+        $I->waitForElementVisible(["css" => ".logo-container > a"]);
+        $I->click(["css" => ".logo-container > a"]);
+        $I->seeElement(self::HOME_BODY);
+    }
+
+    /**
+     * This test will be executed only in 'desktop' environment
+     *
+     * @env desktop
+     */
     public function UserCanDownloadIOSApp(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -44,6 +67,11 @@ class loginPageCest
         $I->closeTab();
     }
 
+    /**
+     * This test will be executed only in 'desktop' environment
+     *
+     * @env desktop
+     */
     public function UserCanDownloadAndroidApp(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -53,18 +81,30 @@ class loginPageCest
         $I->closeTab();
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanChooseLanguage(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
         $I->seeElement(["id" => "react-language-list-container"]);
         $I->click(["css" => "#react-language-list-container li > span[role='button']"]);
-        $I->waitForElementVisible(["class"=>"modal-content"]);
+        $I->waitForElementVisible(["class" => "modal-content"]);
         $I->seeElement(["class"=>"modal-content"]);
         $I->click(["css" => ".modal-header .close"]);
-        $I->waitForElementNotVisible(["class"=>"modal-content"]);
-        $I->dontSeeElement(["class"=>"modal-content"]);
+        $I->waitForElementNotVisible(["class" => "modal-content"]);
+        $I->dontSeeElement(["class" => "modal-content"]);
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanLogInWithEmail(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -85,6 +125,12 @@ class loginPageCest
 
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanLogInWithPhone(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -104,6 +150,12 @@ class loginPageCest
         $I->seeElement(["id" => "navbar-logout-button"]);
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserNonExistentErrorDisplayed(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -115,6 +167,12 @@ class loginPageCest
         $I->SeeElement(["css" => ".authentication-login-form-container .alert"]);
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanRegister(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -125,6 +183,12 @@ class loginPageCest
 
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanChangePasswordWithEmail(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -140,6 +204,12 @@ class loginPageCest
         $I->seeInCurrentUrl("reset-password");
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanChangePasswordWithPhone(AcceptanceTester $I)
     {
         $I->amOnPage($this->loginURL);
@@ -155,8 +225,15 @@ class loginPageCest
         $I->seeInCurrentUrl("reset-password");
     }
 
+    /**
+     * This test will be executed in 'desktop' and 'mobile' environments
+     *
+     * @env desktop
+     * @env mobile
+     */
     public function UserCanUseLiveChat(AcceptanceTester $I)
     {
+        $I->wantTo();
         $I->amOnPage($this->loginURL);
         $I->waitForElementVisible(["class" => "kayako-wrapper"]);
         $I->seeElement(["class" => "kayako-wrapper"]);
