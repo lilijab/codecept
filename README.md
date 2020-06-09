@@ -6,17 +6,17 @@ Install [Composer](https://getcomposer.org/)
 
 _Optional_: install [Docker](https://docs.docker.com/get-docker/)
 
-##Set up
+## Set up
 
-⋅⋅* Clone the repository
+1. Clone the repository
 
-⋅⋅* Run these commands in the project root: 
+2. Run these commands in the project root: 
 
 `composer install ` to install all the project dependencies
 
 `cp .env.example .env` to will copy the example file and create new .env file that will be used to set environment variables. 
 
-⋅⋅* Update .env with test data
+3. Update .env with test data
 
 To run with Selenium Standalone Server using Docker run this command before running the tests:
 
@@ -24,7 +24,7 @@ To run with Selenium Standalone Server using Docker run this command before runn
 
 If you want to run tests with ChromeDriver install it from [here](https://sites.google.com/a/chromium.org/chromedriver/getting-started) and run `./chromedriver --url-base=/wd/hub` before running the tests
 
-#Run
+## Run
 
 Tests in this project can be run in two environments - `mobile` and `desktop`.
 
@@ -32,4 +32,4 @@ To run desktop tests: `php vendor/bin/codecept run --env desktop`
 
 To run mobile tests: `php vendor/bin/codecept run --env mobile`
 
-_Add `--steps` to the end of the command to see every step of the running test_
+_Add `--steps` to the end of the command to see every step of the running test_ 
