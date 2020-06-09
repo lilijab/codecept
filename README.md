@@ -1,6 +1,13 @@
-Prereqs
+## Prerequisites
+
+Install a [Composer](https://getcomposer.org/) to your project's root
+
+
+
+
 
 composer
+
 docker
 
 Set up

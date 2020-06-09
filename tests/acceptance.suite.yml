@@ -3,10 +3,12 @@
 actor: AcceptanceTester
 modules:
     enabled:
+        - Asserts
         - \Helper\Acceptance
         - WebDriver:
               url: 'https://bank.%MAGIC_WORD%.com'
               port: 4444
+              host: chrome
               browser: chrome
 env:
     desktop:

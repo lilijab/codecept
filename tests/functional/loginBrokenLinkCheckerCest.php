@@ -2,7 +2,6 @@
 
 class loginBrokenLinkCheckerCest
 {
-    // tests
     public function UserCanUseLinks(FunctionalTester $I)
 
     {
