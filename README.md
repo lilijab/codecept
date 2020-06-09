@@ -40,9 +40,9 @@ If you want to run tests with ChromeDriver install it from [here](https://sites.
 > notice: make sure to change the port in `acceptance.suite.yml` to `9515`
 
 # Run
+​Tests in this project can be run in two environments - `mobile` and `desktop`.
 ​
-Tests in this project can be run in two environments - `mobile` and `desktop`.
-​
+
 To run all tests: 
 ```shell script
 php vendor/bin/codecept run --env mobile --env desktop
