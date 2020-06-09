@@ -13,7 +13,6 @@ class loginPageCest
 
     const LANGUAGE = "/en";
     const LOGIN_PATH = "/login";
-    const HOME_BODY = "body.layout-front-page";
 
     public function __construct()
     {
@@ -28,8 +27,6 @@ class loginPageCest
     }
 
     /**
-     * This test will be executed only in 'desktop' environment
-     *
      * @env desktop
      */
     public function UserCanReturnHomeDesktop(AcceptanceTester $I)
@@ -39,12 +36,10 @@ class loginPageCest
         $I->waitForElementVisible(["css" => ".{$this->magicWord}-logo > a"]);
         $I->click(["css" => ".{$this->magicWord}-logo > a"]);
         $I->expect("To be on a homepage");
-        $I->seeElement(self::HOME_BODY);
+        $I->seeElement(["css" => "body.layout-front-page"]);
     }
 
     /**
-     * This test will be executed only in 'mobile' environment
-     *
      * @env mobile
      */
     public function UserCanReturnHomeMobile(AcceptanceTester $I)
@@ -54,7 +49,7 @@ class loginPageCest
         $I->waitForElementVisible(["css" => ".logo-container > a"]);
         $I->click(["css" => ".logo-container > a"]);
         $I->expect("To be on a homepage");
-        $I->seeElement(self::HOME_BODY);
+        $I->seeElement(["css" => "body.layout-front-page"]);
     }
 
     /**
@@ -97,7 +92,7 @@ class loginPageCest
         $I->click(["css" => "#react-language-list-container li > span[role='button']"]);
         $I->waitForElementVisible(["class" => "modal-content"]);
         $I->expect("To see a modal with a full list of languages");
-        $I->seeElement(["class"=>"modal-content"]);
+        $I->seeElement(["class" => "modal-content"]);
         $I->waitForElementVisible(["css" => ".modal-header .close"]);
         $I->click(["css" => ".modal-header .close"]);
         $I->waitForElementNotVisible(["class" => "modal-content"]);
@@ -144,7 +139,6 @@ class loginPageCest
         $I->expect("To be logged in to my account");
         $I->waitForElementVisible(["id" => "navbar-logout-button"]);
         $I->seeElement(["id" => "navbar-logout-button"]);
-
     }
 
     /**
@@ -202,7 +196,6 @@ class loginPageCest
         $I->expect("To be redirected to a registration page");
         $I->waitForElementVisible(["id" => "registration-h1"]);
         $I->seeInCurrentUrl("registration");
-
     }
 
     /**
@@ -263,5 +256,4 @@ class loginPageCest
         $I->seeInCurrentUrl("LiveChat");
         $I->switchToWindow();
     }
-
 }

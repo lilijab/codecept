@@ -8,7 +8,6 @@ modules:
         - WebDriver:
               url: 'https://bank.%MAGIC_WORD%.com'
               port: 4444
-              host: chrome
               browser: chrome
 env:
     desktop:

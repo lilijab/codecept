@@ -1,22 +1,35 @@
+This project is a suite of acceptance and functional tests for a website login page written using Codeception framework.
+
 ## Prerequisites
 
-Install a [Composer](https://getcomposer.org/) to your project's root
+Install [Composer](https://getcomposer.org/)
 
+_Optional_: install [Docker](https://docs.docker.com/get-docker/)
 
+##Set up
 
+⋅⋅* Clone the repository
 
+⋅⋅* Run these commands in the project root: 
 
-composer
+`composer install ` to install all the project dependencies
 
-docker
+`cp .env.example .env` to will copy the example file and create new .env file that will be used to set environment variables. 
 
-Set up
-composer install 
+⋅⋅* Update .env with test data
 
-cp .env.example .env
+To run with Selenium Standalone Server using Docker run this command before running the tests:
 
-Update .env with test data
+`docker run -d -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59-20200525`
 
+If you want to run tests with ChromeDriver install it from [here](https://sites.google.com/a/chromium.org/chromedriver/getting-started) and run `./chromedriver --url-base=/wd/hub` before running the tests
 
+#Run
 
-php vendor/bin/codecept run --steps
+Tests in this project can be run in two environments - `mobile` and `desktop`.
+
+To run desktop tests: `php vendor/bin/codecept run --env desktop`
+
+To run mobile tests: `php vendor/bin/codecept run --env mobile`
+
+_Add `--steps` to the end of the command to see every step of the running test_
