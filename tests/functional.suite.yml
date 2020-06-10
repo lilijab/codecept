@@ -4,7 +4,7 @@ actor: FunctionalTester
 modules:
     enabled:
         - PhpBrowser:
-            url: 'https://bank.%MAGIC_WORD%.com/en/login'
+            url: 'https://bank.%MAGIC_WORD%.com'
         - \Helper\Functional
         - REST:
             depends: PhpBrowser

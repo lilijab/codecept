@@ -2,14 +2,18 @@
 
 class loginBrokenLinkCheckerCest
 {
-    /**
-     * @env mobile
-     * @env desktop
-     */
+    const LANGUAGE = "/en";
+    const LOGIN_PATH = "/login";
+
+    public function __construct()
+    {
+        $this->loginURL = self::LANGUAGE . self::LOGIN_PATH;
+    }
+
     public function UserCanUseLinks(FunctionalTester $I)
     {
-        $I->amOnPage('/');
-        $links = $I->grabMultiple('footer .footer-info-holder a', 'href');
+        $I->amOnPage($this->loginURL);
+        $links = $I->grabMultiple(["css" => "footer a"], 'href');
         foreach ($links as $link) {
             $I->sendGET($link);
             $I->seeResponseCodeIsSuccessful();
