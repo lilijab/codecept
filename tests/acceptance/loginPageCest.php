@@ -1,5 +1,7 @@
 <?php
 
+use Facebook\WebDriver\WebDriverElement;
+
 class loginPageCest
 {
     private $magicWord;
@@ -130,8 +132,9 @@ class loginPageCest
         $I->waitForElementVisible(["class" => "user-identifier-container"], 5);
         $I->seeElement(["class" => "user-identifier-container"]);
         $I->see($this->email, ["css" => ".identifier-block > strong"]);
-        $I->waitForElementVisible(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
-        $I->wait(3);
+        $I->waitForElementChange(["css" => "#login-methods-body-app_credentials .panel-body"], function (WebDriverElement $el) {
+            return $el->getText() !== "";
+        }, 5);
         $I->click(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
         $I->waitForElementVisible(["id" => "password"]);
         $I->fillField(["id" => "password"], $this->password);
@@ -155,8 +158,9 @@ class loginPageCest
         $I->waitForElementVisible(["class" => "user-identifier-container"], 5);
         $I->seeElement(["class" => "user-identifier-container"]);
         $I->see($this->phone, ["css" => ".identifier-block > strong"]);
-        $I->waitForElementVisible(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
-        $I->wait(3);
+        $I->waitForElementChange(["css" => "#login-methods-body-app_credentials .panel-body"], function (WebDriverElement $el) {
+            return $el->getText() !== "";
+        }, 5);
         $I->click(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
         $I->waitForElementVisible(["id" => "password"]);
         $I->fillField(["id" => "password"], $this->password);
@@ -209,8 +213,10 @@ class loginPageCest
         $I->waitForElementVisible(["id" => "userIdentifier"]);
         $I->fillField(["id" => "userIdentifier"], $this->email);
         $I->click(["css" => ".authentication-login-form-container button[type=\"submit\"]"]);
-        $I->waitForElementVisible(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
-        $I->wait(3);
+        $I->waitForElementVisible(["class" => "user-identifier-container"], 5);
+        $I->waitForElementChange(["css" => "#login-methods-body-app_credentials .panel-body"], function (WebDriverElement $el) {
+            return $el->getText() !== "";
+        }, 5);
         $I->click(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
         $I->waitForElementVisible(["css" => "#login-methods-body-user_credentials .panel-body .text-center a"]);
         $I->click(["css" => "#login-methods-body-user_credentials .panel-body .text-center a"]);
@@ -230,8 +236,10 @@ class loginPageCest
         $I->waitForElementVisible(["id" => "userIdentifier"]);
         $I->fillField(["id" => "userIdentifier"], $this->phone);
         $I->click(["css" => ".authentication-login-form-container button[type=\"submit\"]"]);
-        $I->waitForElementVisible(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
-        $I->wait(3);
+        $I->waitForElementVisible(["class" => "user-identifier-container"], 5);
+        $I->waitForElementChange(["css" => "#login-methods-body-app_credentials .panel-body"], function (WebDriverElement $el) {
+            return $el->getText() !== "";
+        }, 5);
         $I->click(["css" => "a[aria-controls=\"login-methods-body-user_credentials\"]"]);
         $I->waitForElementVisible(["css" => "#login-methods-body-user_credentials .panel-body .text-center a"]);
         $I->click(["css" => "#login-methods-body-user_credentials .panel-body .text-center a"]);
